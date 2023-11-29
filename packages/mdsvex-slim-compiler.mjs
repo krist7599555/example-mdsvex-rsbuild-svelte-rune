@@ -13,22 +13,28 @@ import remarkContainer from "remark-containers";
 /**
  * The complete Triforce, or one or more components of the Triforce.
  * @typedef {Object} MdxsvexOption
+ * @property {string} filename - inject file path
  * @property {CustomRemarkContainer[]} custom_containers - Indicates whether the Courage component is present.
  * @property {(source: string) => string} inject_script - return new source
+ * @property {(frontmatter: Record<string, any>, option: Partial<MdxsvexOption>) => Record<string, any>} inject_frontmatter - update frontmatter
  */
 
 /**
  * Preprocess Markdown(mdsvex) to Svelte Component
  * @param {string} source - content of markdown
  * @param {Partial<MdxsvexOption>} option - config
- * @returns {Promise<import("svelte/compiler").Processed>}
+ * @returns {Promise<import("svelte/compiler").Processed & { frontmatter: Record<string, any> }>}
  */
 export async function compile(source, option = {}) {
   option.custom_containers ??= [];
   option.inject_script ??= (source) => source;
+  option.inject_frontmatter ??= (source) => source;
+
+  const output = {
+    frontmatter: {}
+  }
 
   const out = await svelte.preprocess(source, {
-    
     // exec markup 1st
     async markup({ content }) {
       const md = await mdsvex.compile(content, {
@@ -43,7 +49,13 @@ export async function compile(source, option = {}) {
           marker: "-",
           parse(source) {
             try {
-              return JSON.parse(JSON.stringify(toml.parse(source)));
+              const frontmatter = JSON.parse(
+                JSON.stringify(toml.parse(source))
+              );
+              output.frontmatter = option.inject_frontmatter
+                ? option.inject_frontmatter(frontmatter, option)
+                : frontmatter;
+              return output.frontmatter
             } catch (err) {
               throw new Error("Parse TOML Frontmatter Error", { cause: err });
             }
@@ -74,6 +86,7 @@ export async function compile(source, option = {}) {
   }); // preprocess end
 
   return {
+    ...output,
     code: out.code,
     map: out.map,
     attributes: out.attributes,

@@ -13,6 +13,7 @@ import * as mdsvexSlim from "./mdsvex-slim-compiler.mjs";
  */
 export default async function mdsvexSlimLoader(source, option) {
   option ??= this.getOptions()
+  option.filename = this.resourcePath
   const out = await mdsvexSlim.compile(source, option)
   return out.code;
 }

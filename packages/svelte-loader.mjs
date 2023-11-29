@@ -15,6 +15,7 @@ export default async function svelteLoader(source, option) {
   const clearRed = "\x1b[0m";
   try {
     option ??= this.getOptions();
+    option.filename = this.resourcePath
     const out = compiler.compile(source, {
       generate: "client",
       sourcemap: "inline",

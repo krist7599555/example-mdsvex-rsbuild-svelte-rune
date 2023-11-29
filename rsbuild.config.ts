@@ -3,6 +3,7 @@ import autoprefixer from "autoprefixer";
 import tailwindcss from "tailwindcss";
 import tailwindConfig from "./tailwind.config";
 import { LoaderOption as MdxLoaderOption } from "./packages/mdsvex-slim-loader.mjs";
+import path from "node:path";
 
 const mdxOption: MdxLoaderOption = {
   // prettier-ignore
@@ -25,6 +26,12 @@ const mdxOption: MdxLoaderOption = {
   inject_script: (source) => {
     return `\nimport Chat from "../src/Chat.svelte";\n` + source;
   },
+  inject_frontmatter: (frontmatter, option) => {
+    return {
+      ...frontmatter,
+      filename: path.resolve(option.filename ?? '')
+    }
+  }
 };
 
 // https://rsbuild.dev/config/options/tools#toolspostcss
