@@ -45,7 +45,7 @@
   "private": true,
   "scripts": {
     "postinstall": "patch-package",
-    "predev": "bun ./generate-content-routes.mjs",
+    "predev": "bun ./script/generate-content-routes.mjs",
     "dev": "rsbuild dev --open",
     "build": "rsbuild build",
     "preview": "rsbuild preview",
