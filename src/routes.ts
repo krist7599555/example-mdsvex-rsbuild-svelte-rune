@@ -12,19 +12,19 @@ export const routes = [
     filename: "1-preface.md",
     import: () => import("../content/1-preface.md"),
     metadata: {"publish":true,"filename":"1-preface.md","sortKey":["900000001","preface.md"],"slug":"preface","title":"คำนำ"},
-    paginate: {"prev":{"publish":true,"filename":"0-main.md","sortKey":["900000000","main.md"],"slug":"main","title":"หนังสือธรรมะ ธรรมชาติ","titlePrev":"ธรรมะ ธรรมชาติ\nโดย อาจารย์น้องไนซ์ นิรมิต เทวาจุติ","tags":["หนังสือ"]},"next":{"publish":true,"filename":"2-biography.md","sortKey":["900000002","biography.md"],"slug":"biography","title":"ประวัติความเป็นมา","titlePrev":"ประวัติความเป็นมา \"องค์เพชรภัทรนาคานาคราช\"","tags":[""]}},
+    paginate: {"prev":{"publish":true,"filename":"0-main.md","sortKey":["900000000","main.md"],"slug":"main","title":"หนังสือธรรมะ ธรรมชาติ","titlePrev":"ธรรมะ ธรรมชาติ\nโดย อาจารย์น้องไนซ์ นิรมิต เทวาจุติ","tags":["หนังสือ"]},"next":{"publish":true,"filename":"2-biography.md","sortKey":["900000002","biography.md"],"slug":"biography","title":"ประวัติความเป็นมา","titlePrev":"ประวัติความเป็นมา \"องค์เพชรภัทรนาคานาคราช\""}},
   },
   {
     filename: "2-biography.md",
     import: () => import("../content/2-biography.md"),
-    metadata: {"publish":true,"filename":"2-biography.md","sortKey":["900000002","biography.md"],"slug":"biography","title":"ประวัติความเป็นมา","titlePrev":"ประวัติความเป็นมา \"องค์เพชรภัทรนาคานาคราช\"","tags":[""]},
+    metadata: {"publish":true,"filename":"2-biography.md","sortKey":["900000002","biography.md"],"slug":"biography","title":"ประวัติความเป็นมา","titlePrev":"ประวัติความเป็นมา \"องค์เพชรภัทรนาคานาคราช\""},
     paginate: {"prev":{"publish":true,"filename":"1-preface.md","sortKey":["900000001","preface.md"],"slug":"preface","title":"คำนำ"},"next":{"publish":true,"filename":"3-learning-within-mind.md","sortKey":["900000003","learning","within","mind.md"],"slug":"learning-within-mind","title":"ทำไมต้องใช้จิตเรียน","titlePrev":"การเรียนรู้ด้วยจิต","tags":["ข้อธรรม"]}},
   },
   {
     filename: "3-learning-within-mind.md",
     import: () => import("../content/3-learning-within-mind.md"),
     metadata: {"publish":true,"filename":"3-learning-within-mind.md","sortKey":["900000003","learning","within","mind.md"],"slug":"learning-within-mind","title":"ทำไมต้องใช้จิตเรียน","titlePrev":"การเรียนรู้ด้วยจิต","tags":["ข้อธรรม"]},
-    paginate: {"prev":{"publish":true,"filename":"2-biography.md","sortKey":["900000002","biography.md"],"slug":"biography","title":"ประวัติความเป็นมา","titlePrev":"ประวัติความเป็นมา \"องค์เพชรภัทรนาคานาคราช\"","tags":[""]},"next":{"publish":true,"filename":"4-angulimaal.md","sortKey":["900000004","angulimaal.md"],"slug":"angulimaal-karma","title":"กรรมขององคุลีมาล","titlePrev":"ข้อธรรมอันเกี่ยวกับองคุลีมาล","tags":["ข้อธรรม"]}},
+    paginate: {"prev":{"publish":true,"filename":"2-biography.md","sortKey":["900000002","biography.md"],"slug":"biography","title":"ประวัติความเป็นมา","titlePrev":"ประวัติความเป็นมา \"องค์เพชรภัทรนาคานาคราช\""},"next":{"publish":true,"filename":"4-angulimaal.md","sortKey":["900000004","angulimaal.md"],"slug":"angulimaal-karma","title":"กรรมขององคุลีมาล","titlePrev":"ข้อธรรมอันเกี่ยวกับองคุลีมาล","tags":["ข้อธรรม"]}},
   },
   {
     filename: "4-angulimaal.md",

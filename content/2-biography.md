@@ -2,7 +2,6 @@
 slug = "biography"
 title = "ประวัติความเป็นมา"
 titlePrev = "ประวัติความเป็นมา \"องค์เพชรภัทรนาคานาคราช\""
-tags = [""]
 ---
 
 <blockquote>

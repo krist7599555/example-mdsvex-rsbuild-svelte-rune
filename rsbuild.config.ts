@@ -23,12 +23,16 @@ const mdxOption: MdxLoaderOption = {
     },
   })),
   inject_script: (source) => {
-    return `\nimport Chat from '../src/Chat.svelte\n';` + source;
+    return `\nimport Chat from "../src/Chat.svelte";\n` + source;
   },
 };
 
 // https://rsbuild.dev/config/options/tools#toolspostcss
 export default defineConfig({
+  dev: {
+    hmr: true,
+    progressBar: true,
+  },
   tools: {
     postcss: (opt) => {
       opt.postcssOptions?.plugins?.push(tailwindcss(tailwindConfig));
@@ -54,7 +58,10 @@ export default defineConfig({
       return config;
     },
   },
-  source: { entry: { index: "./src/index.ts" } },
+  source: {
+    include: ["./content/*.md"],
+    entry: { index: "./src/index.ts" },
+  },
   html: {
     meta: {
       charset: { charset: "UTF-8" },

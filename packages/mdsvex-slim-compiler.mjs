@@ -23,11 +23,12 @@ import remarkContainer from "remark-containers";
  * @param {Partial<MdxsvexOption>} option - config
  * @returns {Promise<import("svelte/compiler").Processed>}
  */
-export async function compile(source, option) {
+export async function compile(source, option = {}) {
   option.custom_containers ??= [];
-  option.inject_script = (source) => source;
+  option.inject_script ??= (source) => source;
 
   const out = await svelte.preprocess(source, {
+    
     // exec markup 1st
     async markup({ content }) {
       const md = await mdsvex.compile(content, {

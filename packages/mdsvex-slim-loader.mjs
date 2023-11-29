@@ -1,7 +1,7 @@
 import * as mdsvexSlim from "./mdsvex-slim-compiler.mjs";
 
 /**
- * @typedef {mdsvexSlim.MdxsvexOption} LoaderOption
+ * @typedef {Partial<mdsvexSlim.MdxsvexOption>} LoaderOption
  */
 
 
@@ -12,6 +12,7 @@ import * as mdsvexSlim from "./mdsvex-slim-compiler.mjs";
  * @returns string
  */
 export default async function mdsvexSlimLoader(source, option) {
+  option ??= this.getOptions()
   const out = await mdsvexSlim.compile(source, option)
   return out.code;
 }
