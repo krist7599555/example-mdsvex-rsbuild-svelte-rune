@@ -12,7 +12,13 @@ import remarkPrettier from 'remark-prettier';
 /// <reference types="remark-frontmatter" />
 
 /** @param {string} source TOML */
-const tomlParse = (source) => JSON.parse(JSON.stringify(toml.parse(source)));
+const tomlParse = (source) => {
+  try {
+    return JSON.parse(JSON.stringify(toml.parse(source)));
+  } catch(err) {
+    throw new Error('Parse TOML Frontmatter Error', { cause: err })
+  }
+}
 
 
 /** @type {typeof import("./mdsvex-slim").compile} */
@@ -75,17 +81,12 @@ export async function compile(source) {
     }, // markup end
     async script({ content, attributes }) {
       if (attributes.context !== "module") {
-        console.log("PRECESS SCRIPT", content.slice(0, 100))
         content = [`\nimport Chat from '../src/Chat.svelte';`, content].join('\n')
       }
-      return {
-        code: content
-      }
+      return { code: content }
     }
   }); // preprocess end
-if (out.code.includes("<Chat")) {
-  console.log({ code: out.code })
-}
+
   return {
     code: out.code,
     map: out.map,

@@ -1,6 +1,8 @@
 ---
 slug = "learning-within-mind"
-title = "การเรียนรู้ด้วยจิต"
+title = "ทำไมต้องใช้จิตเรียน"
+titlePrev = "การเรียนรู้ด้วยจิต"
+tags = ["ข้อธรรม"]
 ---
 
 :::member

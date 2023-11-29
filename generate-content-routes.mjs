@@ -5,14 +5,22 @@ import toml from "toml";
 
 const files = pipe(
   fs.readdirSync("./content"),
-  A.sortBy(F.identity),
   A.map((filename) => {
     const absolute_path = path.resolve("content", filename);
     const relative_path = path.relative("./src", absolute_path);
     const metadata = pipe(
       fs.readFileSync(absolute_path, { encoding: "utf-8" }),
       (str) => str.split(/---/g)[1],
-      (str) => toml.parse(str)
+      (str) => toml.parse(str),
+      (rec) => ({
+        publish: true,
+        filename,
+        sortKey: filename.split("-").map(tok => {
+          const num = parseInt(tok)
+          return Number.isInteger(num) ? `${num + 900000000}` : tok
+        }),
+        ...rec,
+      })
     );
     return {
       metadata,
@@ -21,6 +29,8 @@ const files = pipe(
       relative_path,
     };
   }),
+  A.filter(it => it.metadata.publish !== false),
+  A.sortBy(it => it.metadata.sortKey),
   (arr) =>
     arr.map((route, idx) => {
       return {

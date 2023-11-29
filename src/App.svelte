@@ -88,6 +88,16 @@
 
     <Article>
       <h1>{route.metadata.title}</h1>
+      {#if route.metadata.tags}
+        <div data-nrm="tags" class="-mt-2">
+          {#each route.metadata.tags as tag}
+            <span
+              class="border-current border px-2 py-0.5 text-sm text-primary-500 rounded-md"
+              >{tag}</span
+            >
+          {/each}
+        </div>
+      {/if}
       <svelte:component this={component.default} />
       <nav
         class="mt-12 no-prose mx-auto grid grid-cols-1 gap-4 place-content-center"
@@ -108,7 +118,7 @@
 {#snippet link({ slug: s, title, before, class: cls = "" }: { class?: string, before?: string, slug: string, title?: string })}
   <a
     href="/?blog={s}"
-    class="border border-current bg-[#fae9d7] font-bold text-[#d46d06] py-1 rounded-md text-center no-underline {cls}"
+    class="border border-current bg-primary-100 font-bold text-primary-600 py-1 rounded-md text-center no-underline {cls}"
     on:click|preventDefault={(e) => {
       slug = s;
     }}
